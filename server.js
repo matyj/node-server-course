@@ -11,13 +11,8 @@ app.set("view engine", "hbs");
 app.use((req, res, next) => {
   const now = new Date().toString();
   const log = `${now}: ${req.method} ${req.url}`;
-  console.log();
   fs.appendFile("server.log", log + "\n", err => {});
   next();
-});
-
-app.use((req, res, next) => {
-  res.render("maintenance.hbs");
 });
 
 app.use(express.static(`${__dirname}/public`));
